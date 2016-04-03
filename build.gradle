@@ -1,0 +1,36 @@
+buildscript {
+    ext {
+        ratpackVersion = '1.2.0'
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.ratpack:ratpack-gradle:$ratpackVersion"
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: "io.ratpack.ratpack-groovy"
+apply plugin: "idea"
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+ext {
+    logbackVersion = "1.1.3"
+}
+
+dependencies {
+	compile "io.ratpack:ratpack-rx:$ratpackVersion"
+
+    runtime "ch.qos.logback:logback-core:${logbackVersion}"
+    runtime "ch.qos.logback:logback-classic:${logbackVersion}"
+}
+
+run {
+    //   jvmArgs "-Dratpack.port=8090"
+    systemProperty "ratpack.reloadable", "true"
+}

@@ -1,0 +1,32 @@
+.welcome {
+    display:inline-block;
+    margin-right: 10em;
+}
+
+.autocomplete {
+    position: relative;
+    font-size: 16pt;
+    width: 100%;
+
+}
+
+#moviesContainer {
+    margin-top: 1em;
+    padding-top: 3em;
+    border-top: 2px solid #c0c0c0;
+}
+
+.movie {
+    float: left;
+    margin-right: 3em;
+    height: 35em;
+}
+
+.stat-label {
+    color: #3c3c3c;
+    padding: 0 0.25em 0 1em;
+}
+
+.stat {
+    font-weight: bold;
+}
