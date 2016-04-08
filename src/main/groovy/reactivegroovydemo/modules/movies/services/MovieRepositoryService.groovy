@@ -34,6 +34,7 @@ class MovieRepositoryService implements Service {
     @Override
     void onStart(StartEvent event) throws Exception {
         if (!config.buildRepo) {
+            // here we load all of the movies from the data.json flat file as part of the initialization step
             log.info("Loading movies from data.json")
             File input = new File("data.json")
             movies = (List<Movie>)mapper.readValue(input.text, new TypeReference<List<Movie>>(){});
@@ -88,7 +89,9 @@ class MovieRepositoryService implements Service {
 
 
     Observable<QueryResponse> processResults(Observable<Movie> movies) {
-
+        // an example of zip to execute several streams in parallel
+        // the the nth emitted item of each stream is passed to the closure. This can be an issue if you have uneven (in terms
+        // of response times), but here, luckily, we have quick streams that only emit 1 item
         Observable.zip(reducedMovies(movies), yearBreakdown(movies), genreBreakdown(movies), { List<Movie> data, Map years, Map genres ->
             new QueryResponse(movies: data, yearBreakdown: years, genreBreakdown: genres)
         } as Func3)
