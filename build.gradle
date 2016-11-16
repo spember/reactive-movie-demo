@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        ratpackVersion = '1.2.0'
+        ratpackVersion = '1.4.4'
     }
     repositories {
         jcenter()
@@ -24,13 +24,15 @@ ext {
 }
 
 dependencies {
-	compile "io.ratpack:ratpack-rx:$ratpackVersion"
+    compile "io.reactivex.rxjava2:rxjava:2.0.0"
+	compile("io.ratpack:ratpack-rx:$ratpackVersion") {
+        exclude group: 'io.reactivex.rxjava', module: 'rxjava'
+    }
 
     runtime "ch.qos.logback:logback-core:${logbackVersion}"
     runtime "ch.qos.logback:logback-classic:${logbackVersion}"
 }
 
 run {
-    //   jvmArgs "-Dratpack.port=8090"
     systemProperty "ratpack.reloadable", "true"
 }

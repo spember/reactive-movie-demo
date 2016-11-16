@@ -5,8 +5,8 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
-import ratpack.server.Service
-import ratpack.server.StartEvent
+import ratpack.service.Service
+import ratpack.service.StartEvent
 import reactivegroovydemo.modules.movies.config.MoviesConfig
 import reactivegroovydemo.modules.movies.config.YearlyBreakdown
 

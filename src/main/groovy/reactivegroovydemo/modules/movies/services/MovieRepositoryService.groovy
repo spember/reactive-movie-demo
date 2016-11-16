@@ -7,8 +7,9 @@ import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import ratpack.exec.Promise
 import ratpack.handling.Context
-import ratpack.server.Service
+//import ratpack.server.Service
 import ratpack.server.StartEvent
+import ratpack.service.Service
 import reactivegroovydemo.modules.movies.pogos.ApiQuery
 import reactivegroovydemo.modules.movies.pogos.Movie
 import reactivegroovydemo.modules.movies.config.MoviesConfig
@@ -32,7 +33,7 @@ class MovieRepositoryService implements Service {
     Observable<Movie> movieStream
 
     @Override
-    void onStart(StartEvent event) throws Exception {
+    void onStart(ratpack.service.StartEvent event) throws Exception {
         if (!config.buildRepo) {
             // here we load all of the movies from the data.json flat file as part of the initialization step
             log.info("Loading movies from data.json")
